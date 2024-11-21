@@ -1,0 +1,43 @@
+<%- include ("partials/header.ejs") %>
+
+    <body>
+        <%- include ("partials/navbar.ejs") %>
+            <div class="container">
+                <hr>
+                <h3>
+                    <%= question.title %>
+                </h3>
+                <p>
+                    <%= question.description %>
+                </p>
+                <hr>
+                <form method="POST" action="/response">
+                    <h3>Responda</h3>
+                    <div class="my-3">
+                        <label>Resposta:</label>
+                        <textarea class="form-control" name="body" placeholder="Digite sua resposta"></textarea>
+                        <input type="hidden" value="<%= question.id %>" name="questionId">
+                    </div>
+                    <button type="submit" class="btn btn-success ">Responder</button>
+                </form>
+                <div>
+                    <hr>
+                    <h3>Respostas</h3>
+                    <hr>
+                    <div>
+
+                        <% response.map(res=> { %>
+                            <div class="card my-3">
+                                <div class="card-body">
+                                    <p>
+                                        <%= res.body %>
+                                    </p>
+                                </div>
+                            </div>
+                        <% }) %>
+                        
+                    </div>
+                </div>
+            </div>
+    </body>
+    <%- include ("partials/footer.ejs") %>
